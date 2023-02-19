@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class TodoItemTest < ActiveSupport::TestCase
   test 'invalid todo item' do
