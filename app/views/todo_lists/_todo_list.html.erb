@@ -12,6 +12,13 @@
       <p>
         Completed: <%= todo_item.completed %>
       </p>
+
+      <%= link_to 'Remove item',
+        todo_list_todo_item_path(todo_list, todo_item), data: {
+          'turbo-method': :delete,
+          'turbo-confirm': t('.delete_todo_item_confirm')
+        }
+      %>
     <% end %>
   </div>
 

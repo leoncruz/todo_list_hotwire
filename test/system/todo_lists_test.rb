@@ -85,4 +85,16 @@ class TodoListsTest < ApplicationSystemTestCase
 
     assert_text 'Todo list was successfully destroyed'
   end
+
+  test 'should delete a todo item' do
+    visit todo_list_url(@todo_list)
+
+    assert_text 'Todo Item 1'
+
+    accept_alert I18n.t('todo_lists.todo_list.delete_todo_item_confirm') do
+      click_on 'Remove item'
+    end
+
+    refute_text 'Todo Item 1'
+  end
 end
