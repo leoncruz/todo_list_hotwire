@@ -26,6 +26,26 @@ class TodoListsTest < ApplicationSystemTestCase
     click_on 'Back'
   end
 
+  test 'should create todo list with todo items' do
+    visit todo_lists_path
+    click_on 'New todo list'
+
+    within '#todo-list-form' do
+      fill_in 'Name', with: 'New Todo List'
+    end
+
+    within '#todo-item-form' do
+      fill_in 'Name', with: 'New Todo List Item'
+    end
+
+    click_on 'Create Todo list'
+
+    assert_text 'Todo list was successfully created'
+
+    assert_text 'New Todo List'
+    assert_text 'New Todo List Item'
+  end
+
   test 'should update Todo list' do
     visit todo_list_url(@todo_list)
     click_on 'Edit this todo list', match: :first
