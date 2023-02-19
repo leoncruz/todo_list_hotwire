@@ -17,6 +17,7 @@ AllCops:
     - 'test/test_helper.rb'
     - 'public/**/*'
     - 'node_modules/**/*'
+    - 'db/schema.rb'
 
 Metrics:
   Enabled: false
