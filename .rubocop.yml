@@ -1,0 +1,25 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-minitest
+
+AllCops:
+  TargetRubyVersion: 3.0.0
+
+  NewCops: enable
+
+  Exclude:
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'tmp/**/*'
+    - 'storage/**/*'
+    - 'vendor/**/*'
+    - 'test/test_helper.rb'
+    - 'public/**/*'
+    - 'node_modules/**/*'
+
+Metrics:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
