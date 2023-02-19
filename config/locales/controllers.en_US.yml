@@ -1,0 +1,11 @@
+en:
+  todo_lists:
+    create:
+      notice: Todo list was successfully created.
+      alert: Todo list cannot be created.
+    update:
+      notice: Todo list was successfully updated.
+      alert: Todo list cannot be updated.
+    destroy:
+      notice: Todo list was successfully destroyed.
+      alert: Todo list cannot be destroyed.
