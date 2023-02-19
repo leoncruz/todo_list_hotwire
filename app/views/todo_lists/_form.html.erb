@@ -17,6 +17,21 @@
   </div>
 
   <div>
+    <h1>Items</h1>
+    <%= form.fields_for :todo_items, todo_list.todo_items.build do |ff| %>
+      <div>
+        <%= ff.label :name %>
+        <%= ff.text_field :name %>
+      </div>
+
+      <div>
+        <%= ff.label :completed %>
+        <%= ff.check_box :completed %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>

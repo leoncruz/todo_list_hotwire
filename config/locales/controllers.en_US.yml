@@ -9,3 +9,14 @@ en:
     destroy:
       notice: Todo list was successfully destroyed.
       alert: Todo list cannot be destroyed.
+
+  todo_items:
+    create:
+      notice: Todo item was successfully created.
+      alert: Todo item cannot be created.
+    update:
+      notice: Todo item was successfully updated.
+      alert: Todo item cannot be updated.
+    destroy:
+      notice: Todo item was successfully destroyed.
+      alert: Todo item cannot be destroyed.

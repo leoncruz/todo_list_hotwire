@@ -4,4 +4,15 @@
     <%= todo_list.name %>
   </p>
 
+  <div>
+    <% todo_list.todo_items.each do |todo_item| %>
+      <p>
+        Name: <%= todo_item.name %>
+      </p>
+      <p>
+        Completed: <%= todo_item.completed %>
+      </p>
+    <% end %>
+  </div>
+
 </div>
