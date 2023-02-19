@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  <div>
+  <div id="todo-list-form">
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
 
-  <div>
+  <div id="todo-item-form">
     <h1>Items</h1>
     <%= form.fields_for :todo_items, todo_list.todo_items.build do |ff| %>
       <div>

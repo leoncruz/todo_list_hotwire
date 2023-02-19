@@ -17,7 +17,9 @@ class TodoListsTest < ApplicationSystemTestCase
     visit todo_lists_url
     click_on 'New todo list'
 
-    fill_in 'Name', with: @todo_list.name
+    within '#todo-list-form' do
+      fill_in 'Name', with: @todo_list.name
+    end
     click_on 'Create Todo list'
 
     assert_text 'Todo list was successfully created'
@@ -28,10 +30,15 @@ class TodoListsTest < ApplicationSystemTestCase
     visit todo_list_url(@todo_list)
     click_on 'Edit this todo list', match: :first
 
-    fill_in 'Name', with: @todo_list.name
+    within '#todo-list-form' do
+      fill_in 'Name', with: 'New name'
+    end
+
     click_on 'Update Todo list'
 
     assert_text 'Todo list was successfully updated'
+    assert_text 'New name'
+
     click_on 'Back'
   end
 
