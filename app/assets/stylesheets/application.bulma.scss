@@ -37,3 +37,10 @@
 // @import "bulma/sass/layout/section.sass";
 
 @import 'bulma/bulma';
+
+@media screen and (max-width: 1024px) {
+  .mobile-container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}

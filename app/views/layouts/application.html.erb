@@ -11,6 +11,10 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/navbar' %>
+
+    <div class="container mobile-container">
+      <%= yield %>
+    </div>
   </body>
 </html>
