@@ -1,4 +1,21 @@
 en:
+  navbar:
+    home: Home
+
   todo_lists:
+    total_tasks:
+      zero: no tasks
+      one: 1 task
+      other: '%{count} tasks'
+    completed_tasks:
+      zero: no completed tasks
+      one: 1 completed task
+      other: '%{count} completed tasks'
+    uncompleted_tasks:
+      zero: no uncompleted tasks
+      one: 1 uncompleted task
+      other: '%{count} uncompleted tasks'
+
+
     todo_list:
       delete_todo_item_confirm: Are you sure?
