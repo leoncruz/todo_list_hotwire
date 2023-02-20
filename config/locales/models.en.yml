@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      todo_list:
+        zero: Todo List
+        one: Todo List
+        other: Todo Lists
+
+    attributes:
+      todo_item:
+        completed: Completed
