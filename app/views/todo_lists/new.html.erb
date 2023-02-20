@@ -1,9 +1,11 @@
-<h1>New todo list</h1>
+<div class="columns is-justify-content-center is-align-items-center">
+  <div class="column is-9">
+    <h1 class="is-size-1"><%= t('.title') %></h1>
+  </div>
+
+  <div class="column">
+    <%= link_to t('helpers.actions.back', model: TodoList.model_name.human.pluralize), todo_lists_path %>
+  </div>
+</div>
 
 <%= render "form", todo_list: @todo_list %>
-
-<br>
-
-<div>
-  <%= link_to "Back to todo lists", todo_lists_path %>
-</div>

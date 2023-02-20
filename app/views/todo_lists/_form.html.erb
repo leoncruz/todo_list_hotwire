@@ -1,37 +1,54 @@
 <%= form_with(model: todo_list) do |form| %>
-  <% if todo_list.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(todo_list.errors.count, "error") %> prohibited this todo_list from being saved:</h2>
+  <div class="columns is-centered">
+    <div class="column is-5 ">
+      <div id="todo-list-form">
+        <div class="field">
+          <%= form.label :name, class: 'label' %>
 
-      <ul>
-        <% todo_list.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <div class="control">
+            <%= form.text_field :name, class: 'input' %>
+            <span class="has-text-danger">
+              <%= form.object.errors[:name].to_sentence %>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="py-6" id="todo-item-form">
+        <h1 class="is-size-5 has-text-right"><%= t('todo_lists.add_todo_item') %></h1>
+
+        <div class="py-2">
+          <%= form.fields_for :todo_items do |ff| %>
+            <div class="field">
+              <%= ff.label :name, class: 'label' %>
+
+              <div class="control">
+                <%= ff.text_field :name, class: 'input' %>
+                <span class="has-text-danger">
+                  <%= ff.object.errors[:name].to_sentence %>
+                </span>
+              </div>
+            </div>
+
+            <div class="field">
+              <%= ff.label :completed, class: 'checkbox' %>
+              <%= ff.check_box :completed %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="is-flex is-flex-direction-row is-justify-content-space-between">
+        <%= form.submit class: 'button is-dark' %>
+
+        <% if @todo_list.persisted? && params[:action] == 'edit' %>
+          <%= link_to t('helpers.actions.destroy', model: TodoList.model_name.human), @todo_list, data: {
+            'turbo-method': :delete,
+            'turbo-confirm': t('helpers.actions.confirm')
+            }, class: 'button is-danger'
+          %>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-
-  <div id="todo-list-form">
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div id="todo-item-form">
-    <h1>Items</h1>
-    <%= form.fields_for :todo_items, todo_list.todo_items.build do |ff| %>
-      <div>
-        <%= ff.label :name %>
-        <%= ff.text_field :name %>
-      </div>
-
-      <div>
-        <%= ff.label :completed %>
-        <%= ff.check_box :completed %>
-      </div>
-    <% end %>
-  </div>
-
-  <div>
-    <%= form.submit %>
   </div>
 <% end %>

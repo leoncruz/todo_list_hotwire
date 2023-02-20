@@ -1,10 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @todo_list %>
+<div class="columns is-justify-content-center is-align-items-center">
+  <div class="column is-9">
+    <h1 class="is-size-1"><%= t('.title', list_name: @todo_list.name) %></h1>
+  </div>
 
-<div>
-  <%= link_to "Edit this todo list", edit_todo_list_path(@todo_list) %> |
-  <%= link_to "Back to todo lists", todo_lists_path %>
-
-  <%= button_to "Destroy this todo list", @todo_list, method: :delete %>
+  <div class="column">
+    <div class="is-flex is-flex-direction-column">
+      <%= link_to t('helpers.actions.back', model: TodoList.model_name.human.pluralize), todo_lists_path %>
+      <%= link_to t('helpers.actions.edit', model: TodoList.model_name.human.pluralize), edit_todo_list_path(@todo_list) %>
+    </div>
+  </div>
 </div>
+
+<%= render @todo_list %>

@@ -10,17 +10,17 @@ class TodoListsTest < ApplicationSystemTestCase
   test 'visiting the index' do
     visit todo_lists_url
 
-    assert_selector 'h1', text: 'Todo lists'
+    assert_selector 'h1', text: I18n.t('todo_lists.index.title')
   end
 
   test 'should not create a todo list without a todo item' do
     visit todo_lists_url
-    click_on 'New todo list'
+    click_on I18n.t('helpers.actions.new', model: TodoList.model_name.human)
 
     within '#todo-list-form' do
       fill_in 'Name', with: @todo_list.name
     end
-    click_on 'Create Todo list'
+    click_on I18n.t('helpers.submit.create', model: TodoList.model_name.human)
 
     assert_text I18n.t('activerecord.errors.messages.blank')
     click_on 'Back'
@@ -28,7 +28,7 @@ class TodoListsTest < ApplicationSystemTestCase
 
   test 'should create todo list with todo items' do
     visit todo_lists_path
-    click_on 'New todo list'
+    click_on I18n.t('helpers.actions.new', model: TodoList.model_name.human)
 
     within '#todo-list-form' do
       fill_in 'Name', with: 'New Todo List'
@@ -38,7 +38,7 @@ class TodoListsTest < ApplicationSystemTestCase
       fill_in 'Name', with: 'New Todo List Item'
     end
 
-    click_on 'Create Todo list'
+    click_on I18n.t('helpers.submit.create', model: TodoList.model_name.human)
 
     assert_text 'Todo list was successfully created'
 
@@ -46,25 +46,10 @@ class TodoListsTest < ApplicationSystemTestCase
     assert_text 'New Todo List Item'
   end
 
-  test 'should not update a Todo list without todo item' do
-    visit todo_list_url(@todo_list)
-    click_on 'Edit this todo list', match: :first
-
-    within '#todo-list-form' do
-      fill_in 'Name', with: 'New name'
-    end
-
-    click_on 'Update Todo list'
-
-    assert_text I18n.t('activerecord.errors.messages.blank')
-
-    click_on 'Back'
-  end
-
   test 'should update todo list and todo items' do
     visit todo_list_url(@todo_list)
 
-    click_on 'Edit this todo list', match: :first
+    click_on I18n.t('helpers.actions.edit', model: TodoList.model_name.human.pluralize)
 
     within '#todo-list-form' do
       fill_in 'Name', with: 'New name'
@@ -74,14 +59,17 @@ class TodoListsTest < ApplicationSystemTestCase
       fill_in 'Name', with: 'New Item'
     end
 
-    click_on 'Update Todo list'
+    click_on I18n.t('helpers.submit.update', model: TodoList.model_name.human)
 
     assert_text I18n.t('todo_lists.update.notice')
   end
 
   test 'should destroy Todo list' do
-    visit todo_list_url(@todo_list)
-    click_on 'Destroy this todo list', match: :first
+    visit edit_todo_list_path(@todo_list)
+
+    accept_alert I18n.t('helpers.actions.confirm') do
+      click_on I18n.t('helpers.actions.destroy', model: TodoList.model_name.human)
+    end
 
     assert_text 'Todo list was successfully destroyed'
   end
@@ -91,8 +79,8 @@ class TodoListsTest < ApplicationSystemTestCase
 
     assert_text 'Todo Item 1'
 
-    accept_alert I18n.t('todo_lists.todo_list.delete_todo_item_confirm') do
-      click_on 'Remove item'
+    accept_alert I18n.t('helpers.actions.confirm') do
+      click_link href: todo_list_todo_item_path(@todo_list, @todo_list.todo_items.first)
     end
 
     refute_text 'Todo Item 1'

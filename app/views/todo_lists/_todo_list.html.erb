@@ -1,25 +1,23 @@
-<div id="<%= dom_id todo_list %>">
-  <p>
-    <strong>Name:</strong>
-    <%= todo_list.name %>
-  </p>
+<h1 class="is-size-4">Items</h1>
 
-  <div>
-    <% todo_list.todo_items.each do |todo_item| %>
-      <p>
-        Name: <%= todo_item.name %>
-      </p>
-      <p>
-        Completed: <%= todo_item.completed %>
-      </p>
+<div class="py-4" id="<%= dom_id todo_list %>">
+  <% todo_list.todo_items.each_slice(4) do |todo_item_by_4| %>
+    <div class="columns is-multiline">
+      <% todo_item_by_4.each do |todo_item| %>
+        <div class="column is-3-desktop is-12-mobile is-6">
+          <div class="notification box has-background-white">
+            <p class="is-size-4"><%= todo_item.name %></p>
 
-      <%= link_to 'Remove item',
-        todo_list_todo_item_path(todo_list, todo_item), data: {
-          'turbo-method': :delete,
-          'turbo-confirm': t('.delete_todo_item_confirm')
-        }
-      %>
-    <% end %>
-  </div>
-
+            <span class="py-2">
+              <%= t('activerecord.attributes.todo_list.completed') %>: <%= todo_item.completed %>
+            </span>
+            <%= link_to '', todo_list_todo_item_path(todo_list, todo_item), data: {
+              'turbo-method': :delete,
+              'turbo-confirm': t('helpers.actions.confirm')
+            }, class: 'delete is-small' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
