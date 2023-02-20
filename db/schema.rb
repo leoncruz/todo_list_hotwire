@@ -15,8 +15,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_19_020803) do
   enable_extension "plpgsql"
 
   create_table "todo_items", force: :cascade do |t|
-    t.string "name"
-    t.boolean "completed"
+    t.string "name", null: false
+    t.boolean "completed", default: false, null: false
     t.bigint "todo_list_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
