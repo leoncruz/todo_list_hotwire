@@ -1,14 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Todo lists</h1>
+<div class="columns is-justify-content-center is-align-items-center">
+  <div class="column is-9 ">
+    <h1 class="is-size-1">Todo lists</h1>
+  </div>
 
-<div id="todo_lists">
-  <% @todo_lists.each do |todo_list| %>
-    <%= render todo_list %>
-    <p>
-      <%= link_to "Show this todo list", todo_list %>
-    </p>
-  <% end %>
+  <div class="column">
+    <%= link_to "New todo list", new_todo_list_path, class: 'button is-dark' %>
+  </div>
 </div>
 
-<%= link_to "New todo list", new_todo_list_path %>
+<div id="todo_lists">
+  <% @todo_lists.each_slice(4) do |todo_list_by_3| %>
+    <div class="columns is-multiline">
+      <% todo_list_by_3.each do |todo_list| %>
+        <div class="column is-3-desktop is-12-mobile is-6">
+          <div class="box">
+            <%= link_to todo_list.name, todo_list, class: 'is-size-4' %>
+
+            <ul class="py-2">
+              <li><%= t('todo_lists.total_tasks', count: todo_list.todo_items.count) %></li>
+              <li><%= t('todo_lists.uncompleted_tasks', count: todo_list.uncompleted_items.count) %></li>
+              <li><%= t('todo_lists.completed_tasks', count: todo_list.completed_items.count) %></li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
