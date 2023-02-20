@@ -15,6 +15,14 @@ en:
       zero: no uncompleted tasks
       one: 1 uncompleted task
       other: '%{count} uncompleted tasks'
+    index:
+      title: Todo Lists
+    new:
+      title: New Todo List
+    edit:
+      title: 'Edit %{list_name} list'
+    show:
+      title: '%{list_name} list'
 
 
     todo_list:
