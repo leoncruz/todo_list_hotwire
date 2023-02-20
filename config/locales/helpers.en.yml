@@ -6,3 +6,10 @@ en:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+    actions:
+      confirm: Are you sure?
+      back: Back to %{model}
+      new: New %{model}
+      edit: Edit this %{model}
+      show: Show this %{model}
+      destroy: Destroy this %{model}

@@ -23,7 +23,4 @@ en:
       title: 'Edit %{list_name} list'
     show:
       title: '%{list_name} list'
-
-
-    todo_list:
-      delete_todo_item_confirm: Are you sure?
+    add_todo_item: Add todo item
